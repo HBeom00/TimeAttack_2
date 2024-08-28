@@ -5,7 +5,7 @@ const Detail = () => {
   const [params] = useSearchParams();
   const paramId = params.get("id");
   const detailPokemon = MOCK_DATA.find((el) => el.id === +paramId);
-  console.log(detailPokemon);
+
   return (
     <div>
       <img src={detailPokemon.img_url} alt="pokemon_img" />
