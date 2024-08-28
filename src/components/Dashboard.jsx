@@ -22,7 +22,6 @@ const Dashboard = () => {
             type={el.types}
             id={el.id}
             content={el.description}
-            // onClick={onDelete}
             isSelect={false}
           />
         );
