@@ -1,21 +1,10 @@
+import { useContext } from "react";
 import MOCK_DATA from "../mock";
 import PokemonCard from "./PokemonCard";
+import { PokemonContext } from "../context/store";
 
-const PokemonList = ({ select, setSelect }) => {
-  // 포켓몬 추가
-  const onAdd = ({ e, id }) => {
-    e.stopPropagation();
-    if (select.length >= 6) {
-      alert("최대 6개까지 등록 가능 합니다.");
-      return;
-    }
-    if (select.find((el) => el.id === id)) {
-      alert("이미 등록된 포켓몬 입니다");
-      return;
-    }
-    const addPokemon = MOCK_DATA.find((el) => el.id === id);
-    setSelect([...select, addPokemon]);
-  };
+const PokemonList = () => {
+  const { onAdd } = useContext(PokemonContext);
 
   return (
     <div style={{ display: "flex", flexWrap: "wrap", width: "100%" }}>

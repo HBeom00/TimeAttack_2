@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 
 const PokemonCard = ({ img, name, type, id, isSelect, onClick }) => {
   const navigate = useNavigate();
+
   return (
     <div
       style={{ border: "2px solid black" }}
@@ -11,7 +12,10 @@ const PokemonCard = ({ img, name, type, id, isSelect, onClick }) => {
       <p>{name}</p>
       <p>{type}</p>
       <button
-        onClick={(e) => onClick({ e, id })}
+        onClick={(e) => {
+          e.stopPropagation();
+          onClick(id);
+        }}
         style={{ border: "1px solid blue" }}
       >
         {isSelect ? "추가" : "삭제"}

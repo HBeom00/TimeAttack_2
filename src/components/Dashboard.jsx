@@ -1,12 +1,10 @@
+import { useContext } from "react";
 import PokemonCard from "./PokemonCard";
+import { PokemonContext } from "../context/store";
 
-const Dashboard = ({ select, setSelect }) => {
-  // 포켓몬 삭제
-  const onDelete = ({ e, id }) => {
-    e.stopPropagation();
-    const deletePokemon = select.filter((el) => el.id !== id);
-    setSelect(deletePokemon);
-  };
+const Dashboard = () => {
+  const { select, onDelete } = useContext(PokemonContext);
+
   return (
     <div
       style={{
