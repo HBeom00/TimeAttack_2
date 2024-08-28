@@ -1,6 +1,9 @@
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { onAdd, onDelete } from "../rtk/slice/pokemonSlice";
 
-const PokemonCard = ({ img, name, type, id, isSelect, onClick }) => {
+const PokemonCard = ({ img, name, type, id, isSelect }) => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   return (
@@ -11,15 +14,27 @@ const PokemonCard = ({ img, name, type, id, isSelect, onClick }) => {
       <img src={img} alt="pokemon_img" />
       <p>{name}</p>
       <p>{type}</p>
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          onClick(id);
-        }}
-        style={{ border: "1px solid blue" }}
-      >
-        {isSelect ? "추가" : "삭제"}
-      </button>
+      {isSelect ? (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(onAdd(id));
+          }}
+          style={{ border: "1px solid blue" }}
+        >
+          추가
+        </button>
+      ) : (
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            dispatch(onDelete(id));
+          }}
+          style={{ border: "1px solid blue" }}
+        >
+          삭제
+        </button>
+      )}
     </div>
   );
 };

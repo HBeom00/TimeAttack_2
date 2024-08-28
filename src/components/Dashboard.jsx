@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import PokemonCard from "./PokemonCard";
-import { PokemonContext } from "../context/store";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const { select, onDelete } = useContext(PokemonContext);
+  const select = useSelector((state) => state.pokemonSlice.select);
 
   return (
     <div
@@ -23,7 +22,7 @@ const Dashboard = () => {
             type={el.types}
             id={el.id}
             content={el.description}
-            onClick={onDelete}
+            // onClick={onDelete}
             isSelect={false}
           />
         );
